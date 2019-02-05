@@ -1,3 +1,8 @@
+//
+// Daniel Ulinski
+// Game of War, main file
+//
+
 #pragma once
 
 #include "deck.h"
