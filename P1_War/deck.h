@@ -51,6 +51,7 @@ public:
     deck(int playernum); //now I can just make this a multipurpose class instead of making a player deck class
     card deal();
     void shuffle();
+    int size();
     void seat_card(card bounce);
     int playernum();
 
@@ -87,10 +88,15 @@ void deck::shuffle()
     std::shuffle(deckstack.begin(), deckstack.end(), rng);
 }
 
+int deck::size()
+{
+    return decksize;
+}
+
 card deck::deal()
 {
-    card bounce(deckstack[decksize].return_face(), deckstack[decksize].return_suit());
-    deckstack.pop_back();
+    card bounce(deckstack[1].return_face(), deckstack[1].return_suit());
+    deckstack.erase(deckstack.begin());
     decksize--;
     return bounce;
 }
@@ -105,6 +111,5 @@ int deck::playernum()
 {
     return player;
 }
-
 
 #endif //P1_WAR_DECK_H
