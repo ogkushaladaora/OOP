@@ -13,9 +13,7 @@ using std::endl;
 /*
  * Needs:
  *
- * take one card from each deck and compare face values
- * deck with higher value adds both cards to their deck
- * if there is a tie, recurse.
+ * Make it use binary
  */
 
 void war(deck &player1, deck &player2)

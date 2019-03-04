@@ -12,36 +12,24 @@
 #include <algorithm>
 #include <random>
 
+/*
+ * Needs:
+ *
+ * Make it use Binary
+ */
+
 class card
 {
 public:
-    card();
-    card(int face, int suit);
-    int return_face();
-    int return_suit();
+    card() = default;
+    card(rank r, suit s)
+            : data(static_cast<unsigned>(s) << 4 | static_cast<unsigned>(r));
+
+    rank return_rank() const {return static_cast<rank>(data & 0xf);}
+    suit return_suit() const {return static_cast<suit>(data >> 4);}
 
 private:
-    int face; //0-3, hearts-spades-diamonds-clubs
-    int suit; //0-13, 2-3-4-5-6-7-8-9-10-jack-queen-king-ace
-};
-
-card::card()
-{}
-
-card::card(int inface, int insuit)
-{
-    face = inface;
-    suit = insuit;
-}
-
-int card::return_face()
-{
-    return face;
-}
-
-int card::return_suit()
-{
-    return suit;
+    unsigned char data;
 }
 
 class deck
