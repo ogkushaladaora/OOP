@@ -98,8 +98,8 @@ public:
 
     //standard and joker card determinator
     Bool CardType() {
-        if (cardtype == Standard) {return false};
-        if (cardtype == Joker) {return true};
+        if (cardtype == Standard) {return false;}
+        if (cardtype == Joker) {return true;}
     }
 
     //needs:
