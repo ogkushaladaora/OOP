@@ -88,8 +88,8 @@ public:
     : cardtype(Joker), cardkind(c) {}
 
 private:
-    CardType cardtype;
-    kind cardkind;
+    CardType cardtype; //the type
+    kind cardkind; //the card
 
 public:
     //needs:
@@ -102,7 +102,17 @@ public:
         if (cardtype == Joker) {return true};
     }
 
-    
+    //needs:
+    //if its a standardcad return dtandardcard values
+    //if jokercard return jokercard values
+
+    standardcard return_standard() {
+        if (cardtype == Standard) {return cardkind.standard;}
+    }
+
+    jokercard return_joker() {
+        if (cardtype == Joker) {return cardkind.joker;}
+    }
 };
 
 #endif //P1_WAR_DECK_H
