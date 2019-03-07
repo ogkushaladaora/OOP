@@ -95,7 +95,6 @@ enum CardType {
     Joker,
 };
 
-
 class standardcard {
     standardcard(Rank r, Suit s)
     : rank(r), suit(s) {}
