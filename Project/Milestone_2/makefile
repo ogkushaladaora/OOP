@@ -19,7 +19,7 @@ point.h: point.h
 run: runmain
 
 runmain:
-	./main.exe
+	./main
 
 .PHONY: clean
 clean :
