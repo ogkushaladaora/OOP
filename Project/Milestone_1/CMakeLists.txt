@@ -5,5 +5,5 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/../cmake")
 find_package(SFML COMPONENTS graphics window system)
 include_directories(${SFML_INCLUDE_DIR})
 
-add_executable(mahjong main.cpp)
-target_link_libraries(mahjong ${SFML_LIBRARIES})
+add_executable(doodle main.cpp)
+target_link_libraries(doodle ${SFML_LIBRARIES})
