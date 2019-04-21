@@ -1,7 +1,3 @@
-//
-// Created by Daniel Ulinski on 2019-04-10.
-//
-
 #ifndef PROJECT_POINT_H
 #define PROJECT_POINT_H
 
@@ -17,4 +13,4 @@ private:
 };
 
 
-#endif //PROJECT_POINT_H
+#endif

@@ -1,8 +1,4 @@
-//
-// Created by Daniel Ulinski on 2019-04-10.
-//
-
-#include "point.h"
+#include "point.hpp"
 
 void point::changex(int newx) {
     x = newx;
@@ -13,9 +9,9 @@ void point::changey(int newy) {
 }
 
 int point::getx() {
-	return x;
+    return x;
 }
 
 int point::gety() {
-	return y;
+    return y;
 }
