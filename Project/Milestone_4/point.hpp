@@ -1,7 +1,6 @@
 #ifndef PROJECT_POINT_H
 #define PROJECT_POINT_H
 
-
 class point {
 public:
     void changex (int newx);
