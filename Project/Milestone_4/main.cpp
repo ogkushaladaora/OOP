@@ -2,6 +2,7 @@
 #include <time.h>
 #include "point.hpp"
 #include "character.hpp"
+#include "event.hpp"
 using namespace sf;
 
 int
