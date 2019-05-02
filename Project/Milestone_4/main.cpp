@@ -3,6 +3,7 @@
 #include "point.hpp"
 #include "character.hpp"
 #include "event.cpp"
+
 using namespace sf;
 
 //This is here because having it anywhere else gave me a linker error.
