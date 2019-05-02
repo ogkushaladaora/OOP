@@ -76,7 +76,6 @@ void ShufflePlatforms(character& c, point plat[20], point badplat[20], float& dy
         if (badplat[i].gety() > 533) {
             badplat[i].changey(0);
             badplat[i].changex(rand() % 400);
-
         }
     }
 }
@@ -116,6 +115,7 @@ int main()
             app.close();
         }
 
+        //All processing is done through these function calls
         LeftandRight(c);
         GibeMomentum(c, dy);
         ShufflePlatforms(c, plat, badplat, dy, h);
