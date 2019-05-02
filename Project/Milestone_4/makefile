@@ -3,8 +3,8 @@
 .PHONY: all
 all: full
 
-full: main.o point.o character.o
-	g++ main.o point.o character.o -o main -lsfml-graphics -lsfml-window -lsfml-system
+full: main.o point.o character.o event.o
+	g++ main.o point.o character.o event.o -o main -lsfml-graphics -lsfml-window -lsfml-system
 
 main.o: main.cpp
 	g++ -std=c++11 -c main.cpp
@@ -20,6 +20,12 @@ character.o: character.cpp character.h
 
 character.h: character.hpp
 	g++ -std=c++11 -c character.hpp
+
+event.o: event.cpp event.h
+	g++ -std=c++11 -c event.cpp
+
+event.h: event.hpp
+	g++ -std=c++11 -c event.hpp
 
 .PHONY: run
 run: runmain
