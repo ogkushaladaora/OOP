@@ -50,6 +50,7 @@ void GibeMovement(character& c, point plat[20], point badplat[20], float& dx, fl
             (c.gety() + 70 > badplat[i].gety()) && (c.gety() + 70 < badplat[i].gety() + 14) && (dy > 0))
             dy = 0;
     }
+    //dx does nothing but it is there for future use
 }
 
 //This starts the movement of the character sprite
