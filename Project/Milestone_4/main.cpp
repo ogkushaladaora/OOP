@@ -15,11 +15,68 @@ void GenerateTileState(point plat[20]){
     }
 }
 
+//At this point I'm sure the problem is how I set up the makefile
+//but I'm too afraid of failure to change it
+//Anyway here is the keyboard events
 void LeftandRight(character& c){
     if (Keyboard::isKeyPressed(Keyboard::Right))
        c.plusx(3);
     if (Keyboard::isKeyPressed(Keyboard::Left))
        c.minusx(3);
+}
+
+//It sends everything to the renderwindow and readies that for rendering
+void DrawEverything(RenderWindow& app, point plat[20], point badplat[20], Sprite sPlat, 
+                    Sprite sBadPlat, Sprite sBackground, Sprite sPers){
+    app.draw(sBackground);
+    app.draw(sPers);
+    for (int i = 0; i < 10; i++) {
+        sPlat.setPosition(plat[i].getx(), plat[i].gety());
+        sBadPlat.setPosition(badplat[i].getx(), badplat[i].gety());
+        app.draw(sPlat);
+        app.draw(sBadPlat);
+    }
+
+    app.display();
+}
+
+//This is vertical movement
+void GibeMovement(character& c, point plat[20], point badplat[20], float& dx, float& dy){
+    for (int i = 0; i < 10; i++){
+        if ((c.getx() + 50 > plat[i].getx()) && (c.getx() + 20 < plat[i].getx() + 68) &&
+            (c.gety() + 70 > plat[i].gety()) && (c.gety() + 70 < plat[i].gety() + 14) && (dy > 0))
+        dy = -10;
+        if ((c.getx() + 50 > badplat[i].getx()) && (c.getx() + 20 < badplat[i].getx() + 68) &&
+            (c.gety() + 70 > badplat[i].gety()) && (c.gety() + 70 < badplat[i].gety() + 14) && (dy > 0))
+            dy = 0;
+    }
+}
+
+//This starts the movement of the character sprite
+void GibeMomentum(character& c, float& dy){
+    dy += 0.2;
+    c.plusy(dy);
+    if (c.gety() > 500)
+         dy = -10;
+}
+
+//this randomizes the location of the platforms
+void ShufflePlatforms(character& c, point plat[20], point badplat[20], float& dy, int h){
+    if (c.gety() < h)
+        for (int i = 0; i < 10; i++) {
+           c.changey(h);
+           plat[i].changey(plat[i].gety() - dy);
+           if (plat[i].gety() > 533) {
+                plat[i].changey(0);
+                plat[i].changex(rand() % 400);
+        }
+        badplat[i].changey(plat[i].gety() - dy);
+        if (badplat[i].gety() > 533) {
+            badplat[i].changey(0);
+            badplat[i].changex(rand() % 400);
+
+        }
+    }
 }
 
 int main()
@@ -55,52 +112,14 @@ int main()
         while (app.pollEvent(e)) {
             if (e.type == Event::Closed)
             app.close();
-    }
-
-    LeftandRight(c);
-
-    dy += 0.2;
-    c.plusy(dy);
-    if (c.gety() > 500)
-         dy = -10;
-
-    if (c.gety() < h)
-        for (int i = 0; i < 10; i++) {
-           c.changey(h);
-           plat[i].changey(plat[i].gety() - dy);
-           if (plat[i].gety() > 533) {
-                plat[i].changey(0);
-                plat[i].changex(rand() % 400);
         }
-        badplat[i].changey(plat[i].gety() - dy);
-        if (badplat[i].gety() > 533) {
-            badplat[i].changey(0);
-            badplat[i].changex(rand() % 400);
 
-        }
-    }
-
-    for (int i = 0; i < 10; i++){
-        if ((c.getx() + 50 > plat[i].getx()) && (c.getx() + 20 < plat[i].getx() + 68) &&
-            (c.gety() + 70 > plat[i].gety()) && (c.gety() + 70 < plat[i].gety() + 14) && (dy > 0))
-        dy = -10;
-        if ((c.getx() + 50 > badplat[i].getx()) && (c.getx() + 20 < badplat[i].getx() + 68) &&
-            (c.gety() + 70 > badplat[i].gety()) && (c.gety() + 70 < badplat[i].gety() + 14) && (dy > 0))
-            dy = 0;
-    }
-
-    sPers.setPosition(c.getx(), c.gety());
-
-    app.draw(sBackground);
-    app.draw(sPers);
-    for (int i = 0; i < 10; i++) {
-        sPlat.setPosition(plat[i].getx(), plat[i].gety());
-        sBadPlat.setPosition(badplat[i].getx(), badplat[i].gety());
-        app.draw(sPlat);
-        app.draw(sBadPlat);
-    }
-
-    app.display();
+        LeftandRight(c);
+        GibeMomentum(c, dy);
+        ShufflePlatforms(c, plat, badplat, dy, h);
+        GibeMovement(c, plat, badplat, dx, dy);
+        sPers.setPosition(c.getx(), c.gety());
+        DrawEverything(app, plat, badplat, sPlat, sBadPlat, sBackground, sPers);
     }
 
     return 0;
